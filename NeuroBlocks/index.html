@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeuroBlocks — Landing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #161630;
+      --bg-light: #0d112a;
+      --muted: #94a3b8;
+      --accent1: #EA4B71;
+      --accent2: #10b981;
+      --font-main: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0; height: 100%;
+      background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-light) 100%);
+      color: #f1f1f1; font-family: var(--font-main); backdrop-filter: blur(8px);
+      overflow-x: hidden; animation: fadeIn 0.5s ease-out;
+      -webkit-font-smoothing: antialiased;
+    }
+    @keyframes fadeIn {
+        0% {
+        opacity: 0.8;
+        transform: scale(1.03);
+      }
+        100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    * {
+      font-weight: 400 !important;
+    }
+    main {
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+               url("1.jpg"), no-repeat center center/cover;
+      background-color: #000;
+      color: #fff;
+      width: 100%;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: 100%; margin: 0 auto; padding: 2.5%; }
+    header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 2% 4%; backdrop-filter: blur(6px);
+      background: var(--bg-dark);
+    }
+    .nav-left { display: flex; align-items: center; gap: 1rem; }
+    .logo {
+      background: linear-gradient(90deg, #1e1bff, #5b00b3);
+      padding: 8px; border-radius: 8px;
+    }
+    .brand { display: flex; flex-direction: column; margin-left: 0.5rem; }
+    .brand .name { font-size: 1.2rem; }
+    .brand .subtitle { font-size: 12px; color: var(--muted); }
+    .nav-links {
+      display: flex; align-items: center; gap: 3rem; min-width: 500px;
+    }
+    .nav-links a {
+      opacity: 0; transform: translateY(6px);
+      animation: navLinkFade 0.5s ease forwards;
+    }
+    .nav-links a:nth-child(1) { animation-delay: 0.1s; }
+    .nav-links a:nth-child(2) { animation-delay: 0.18s; }
+    .nav-links a:nth-child(3) { animation-delay: 0.26s; }
+    .nav-links a:nth-child(4) { animation-delay: 0.34s; }
+    @keyframes navLinkFade {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .btn {
+      display: inline-block;
+      padding: 1% 2.5%;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #1e1bff, #5b00b3);
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 12px rgba(90, 0, 255, 0.3);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(120, 80, 255, 0.5);
+      background: linear-gradient(90deg, #322eff, #8a00ff);
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+      box-shadow: 0 0 8px rgba(90, 0, 255, 0.3);
+    }
+
+    .btn.transparent {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.25);
+      box-shadow: 0 0 12px rgba(90, 0, 255, 0.3);
+    }
+
+    .btn.transparent:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.4);
+    }
+
+    .btn a {
+      opacity: 0; transform: translateY(10px);
+      animation: btnFade 0.5s ease forwards;
+    }
+    .btn a:nth-child(1) { animation-delay: 0.4s; }
+    .btn a:nth-child(2) { animation-delay: 0.5s; }
+    @keyframes btnFade {
+      to { opacity:1; transform: translateY(0); }
+    }
+    .btn a:not(.cta) {
+      padding: 10px 14px; border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: transparent; transition: background 0.3s;
+    }
+    .btn a:not(.cta):hover {
+      background: rgba(255,255,255,0.1);
+    }
+    .menu-btn {
+      width: 30px;
+      height: 28px;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .menu-btn span {
+      height: 4px;
+      width: 100%;
+      background: #fff;
+      border-radius: 4px;
+      transition: 0.4s ease;
+    }
+    .menu-btn.active span:nth-child(1) {
+      transform: translateY(12px) rotate(45deg);
+    }
+    .menu-btn.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-btn.active span:nth-child(3) {
+      transform: translateY(-12px) rotate(-45deg);
+    }
+    #mobileNav {
+      animation: slideDown 0.45s ease forwards;
+      backdrop-filter: blur(12px);
+      transform-origin: top;
+    }
+    #mobileNav.hide {
+      animation: slideUp 0.35s ease forwards;
+    }
+    @keyframes slideDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px) scaleY(0.9);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scaleY(1);
+      }
+    }
+    @keyframes slideUp {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scaleY(1);
+      }
+      100% {
+        opacity: 0;
+        ransform: translateY(-20px) scaleY(0.9);
+      }
+    }
+
+    .hero {
+      align-items: center;
+      gap: 20px; padding: 1.5% 0;
+    }
+    h1 {
+      font-size: 3.5vw; margin: 0 0 1% 0; line-height: 1.1;
+    }
+    p.lead {
+      color: rgba(255,255,255,0.9); max-width: 80%; align-content: center;
+    }
+    .pulse {
+      margin-top: 2%; padding: 5%; border-radius: 18px;
+      background: rgba(255,255,255,0.04); backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.1);
+      animation: pulse 4.5s infinite ease-in-out;
+    }
+    .pulse .item {
+      display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+    .icon {
+      width: 1.5rem; height: 1.5rem; border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .canvas-mock { 
+      width: auto;
+      height: auto;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      backdrop-filter: blur(10px);
+      margin: 50px auto;
+      padding: 1.5%;
+      overflow: visible;
+      box-shadow: 0 0 40px rgba(0,0,0,0.3);
+      animation: fadeUp 1.2s ease;
+    }
+    /* Верхняя панель */
+    .canvas-header {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .canvas-header .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+    }
+    .red { background: #ff4d4d; }
+    .yellow { background: #ffd633; }
+    .green { background: #67d96e; }
+    /* Тело с блоками */
+    .canvas-body {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .block {
+      width: 250px;
+      height: 150px;
+      display: flex;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #2a2a4a, #1b1b33);
+      box-shadow: 0 0 12px rgba(0,0,0,0.3);
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      cursor: pointer;
+      opacity: 0.9;
+      transition: 0.3s;
+    }
+    .block:hover {
+      transform: translateY(-4px);
+      animation: pulse 1.6s infinite ease-in-out;
+    }
+    .block .icon {
+      color: #9f7fff;
+      opacity: 0.9;
+    }
+    .block .label {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 0.5px;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 15px rgba(130, 60, 255, 0.4); }
+      50% { box-shadow: 0 0 25px rgba(130, 60, 255, 0.8); }
+    }
+    .how{
+      margin: 0 auto;
+      gap: 2.5%; padding: 5% 0;
+      padding:18px;border-radius:24px;
+      border:1px solid rgba(255,255,255,0.025);
+      box-shadow: 0 0 16px rgba(130, 60, 255, 0.8);
+      max-width: 500px;
+      margin-bottom: 1.5%;
+    }
+    .features {
+      display: flex; flex-direction: column; gap: 2.5%;
+      margin: 0 auto;
+      border:1px solid rgba(255,255,255,0.025);
+      box-shadow: 0 0 16px rgba(130, 60, 255, 0.8);
+      max-width: 500px;
+      padding: 5% 0;
+      padding:18px;border-radius:24px;
+    }
+    .card {
+      padding: 3%; border-radius: 18px; margin: 0.5%;
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .flows-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+    .flow-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(130, 60, 255, 0.8);
+      padding: 14px;
+      margin-top: 5%;
+      overflow: visible;
+      transition: transform .28s ease, box-shadow .28s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .flow-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 12px rgba(130, 60, 255, 0.8);
+    }
+    .flow-canvas {
+      position: relative;
+      width: 100%;
+      height: 120px;
+      border-radius: 8px;
+      overflow: visible;
+      pointer-events: none;
+    }
+    .flow-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .flow-line {
+      stroke-dasharray: 300;
+      stroke-dashoffset: 300;
+      transition: stroke-dashoffset 1s cubic-bezier(.2,.9,.3,1), opacity .35s;
+      opacity: 0.65;
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,0.6));
+    }
+    .flow-card:hover .flow-line {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+    .flow-block {
+      position: absolute;
+      transform: translate(-50%,-50%);
+      padding: 8px 10px;
+      min-width: 64px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(0,0,0,0.06));
+      border: 1px solid rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.95);
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-align: center;
+      transition: transform .35s ease, box-shadow .35s ease;
+      box-shadow: 0 6px 18px rgba(2,6,23,0.4);
+      opacity: 0.95;
+      pointer-events: auto;
+    }
+    /* subtle base state */
+    .flow-card .flow-block { transform: translate(-50%,-50%) scale(0.98); }
+    /* hover node behaviour: glow + scale */
+    .flow-card:hover .flow-block {
+      transform: translate(-50%,-50%) scale(1.05);
+      box-shadow: 0 16px 40px rgba(99,102,241,0.14);
+    }
+    /* meta */
+    .flow-meta { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:6px; }
+    .flow-title { font-weight:700; font-size:1rem; color: #fff; }
+    .flow-desc { color: var(--muted); font-size:0.85rem; }
+    /* demo button small style */
+    .flow-actions .demo-btn {
+      padding: 6px 10px;
+      font-size: 0.85rem;
+      border-radius: 8px;
+      background: linear-gradient(90deg,#1e1bff,#5b00b3);
+      border: none;
+      color: white;
+      cursor: pointer;
+      transition: transform .18s ease, box-shadow .18s;
+    }
+    .flow-actions .demo-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 24px rgba(80,40,200,0.22); }
+    /* tooltip-like preview on hover */
+    .flow-card .flow-meta::after {
+      content: attr(data-desc);
+      position: absolute;
+      left: 14px; top: -34px;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      padding: 6px 10px; border-radius: 8px; font-size: 0.8rem;
+      opacity: 0; transform: translateY(6px);
+      pointer-events: none;
+      transition: opacity .25s, transform .25s;
+    }
+    .flow-card:hover .flow-meta::after {
+      opacity: 1; transform: translateY(0);
+    }
+    /* responsive */
+    @media (max-width:700px) {
+      .flow-canvas { height: 100px; }
+      .flow-line { stroke-width: 2.5; stroke-dasharray: 240; }
+    }
+    
+    .hero, .how, .examples, .builder {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+    }
+    .case {
+      flex: 1; position: relative; border-radius: 8px;
+      overflow: hidden; background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+    }
+    .case img {
+      width: 100%; height: 25vh; object-fit: cover;
+      border-radius: 4px;
+      opacity: 0; transform: translateY(15%);
+      animation: caseSlide 0.7s ease forwards;
+    }
+    .case:nth-child(1) img { animation-delay: 0.1s; }
+    .case:nth-child(2) img { animation-delay: 0.2s; }
+    .case:nth-child(3) img { animation-delay: 0.3s; }
+    @keyframes caseSlide {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .footer-links {
+      width: fit-content;
+      margin: 0 auto;
+      color: var(--muted);
+      display: flex;
+      gap: 60px;
+    }
+  </style>
+</head>
+<body>
+  <div class="background-blur"></div>
+  <header>
+    <div class="nav-left">
+      <div class="logo">NB</div>
+      <div class="brand">
+        <div class="name">NeuroBlocks</div>
+        <div class="subtitle">AI Builder Platform</div>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#how">How it works</a>
+      <a href="#examples">Examples</a>
+      <a href="builder.html" class="btn">Try Builder</a>
+    </nav>
+    <div id="menuBtn" class="menu-btn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <main class="container" id="home">
+    <section class="hero">
+      <div>
+        <h1 align-items="center">Build AI visually. Deploy instantly.</h1>
+        <p class="lead">Compose intelligent micro-apps by connecting blocks — prompt, UI and API. Visual editor meets powerful models in one place.</p>
+
+        <div class="btn"><a class="cta" href="builder.html">Open Builder</a></div>
+        <div class="btn transparent"><a class="cta" href="#examples">View Examples</a></div>
+      </div>      
+      <div>
+        <div class="pulse">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div style="font-size:12px;color:var(--muted)">Neuro Pulse</div>
+              <div style="font-weight:700">AI-generated flow suggestions</div>
+            </div>
+            <div style="font-size:12px;color:var(--muted)">Live</div>
+          </div>
+          <div style="margin-top:12px">
+            <div class="item"><div class="icon" style="background:linear-gradient(135deg,#FB7185,#FCD34D)">P</div><div style="flex:1;color:rgba(255,255,255,0.9)">Summarize today's tickets → Post to Slack</div><div style="font-size:12px;color:var(--muted)">1s</div></div>
+            <div class="item"><div class="icon" style="background:rgba(255,255,255,0.3)">T</div><div style="flex:1;color:rgba(255,255,255,0.8)">Extract emails from support → Add to sheet</div><div style="font-size:12px;color:var(--muted)">2s</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="canvas-mock">
+        <div class="canvas-header">
+          <div class="dot red"></div>
+          <div class="dot yellow"></div>
+          <div class="dot green"></div>
+        </div>
+      
+        <div class="canvas-body">
+          <div class="block">
+            <div class="icon">
+              <svg width="22" height="22" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M4 6h16v2H4zm0 5h16v2H4zm0 5h10v2H4z"/>
+              </svg>
+            </div>
+            <p class="label">Text Block</p>
+          </div>
+          <div class="block">
+            <div class="icon">
+              <svg width="22" height="22" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm0 2v14h14V5H5zm3 3h8v2H8zm0 4h8v2H8z"/>
+              </svg>
+            </div>
+            <p class="label">Card</p>
+          </div>
+          <div class="block">
+            <div class="icon">
+              <svg width="22" height="22" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M21 11H6.41l5.3-5.29L10 4l-8 8 8 8 1.71-1.71L6.41 13H21z"/>
+              </svg>
+            </div>
+            <p class="label">Button</p>
+          </div>
+        </div>
+      </div>      
+    </section>
+
+    <section>
+      <div>
+        <div class="how" id="how">
+          <div style="font-size:13px;color:var(--muted)">How it works</div>
+          <h3 style="margin:8px 0 10px 0">Create flows visually — enhanced by AI</h3>
+          <ol style="color:rgba(255,255,255,0.75);margin-left:18px">
+            <li>Drag blocks into the canvas.</li>
+            <li>Describe your intent — the AI suggests flows.</li>
+            <li>Connect outputs & inputs, test in the preview.</li>
+          </ol>
+        </div>
+        <div class="features">
+          <div class="card"><strong>Smart Blocks</strong><div style="color:var(--muted);margin-top:8px">Prompts, UIs and adaptive logic in one block.</div></div>
+          <div class="card"><strong>Playground</strong><div style="color:var(--muted);margin-top:8px">Run models in browser & compare outputs.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="flow-examples" style="padding:6% 2% 8% 2%;">
+      <h2 style="font-size:1.6rem;margin-bottom:0.6rem; text-align: center;">Flow Examples</h2>
+      <p style="color:rgba(255,255,255,0.8);margin-bottom:1.2rem; text-align: center;">
+        Interactive flow demos — hover a card to reveal the live connectors, highlights and a mini preview.
+      </p>
+    
+      <div class="flows-grid">
+        <!-- Flow A -->
+        <article class="flow-card" data-title="Summarize Flow" data-desc="Fetch content → Summarize → Post to Slack">
+          <div class="flow-canvas" aria-hidden="true">
+            <svg class="flow-svg" viewBox="0 0 360 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="gA" x1="0" x2="1">
+                  <stop offset="0" stop-color="#4f46e5" stop-opacity="1"/>
+                  <stop offset="1" stop-color="#7c3aed" stop-opacity="1"/>
+                </linearGradient>
+              </defs>
+              <path class="flow-line" d="M60 60 C110 20, 180 20, 240 60" stroke="url(#gA)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+    
+            <div class="flow-block" style="left:4%;top:50%;">Fetch</div>
+            <div class="flow-block" style="left:40%;top:12%;">AI Summarize</div>
+            <div class="flow-block" style="left:70%;top:50%;">Slack</div>
+          </div>
+    
+          <div class="flow-meta">
+            <div class="flow-title">Summarize Flow</div>
+            <div class="flow-desc">Fetch → Summarize → Post</div>
+            <div class="flow-actions">
+              <button class="btn demo-btn">Open demo</button>
+            </div>
+          </div>
+        </article>
+    
+        <!-- Flow B -->
+        <article class="flow-card" data-title="Idea Generator" data-desc="User prompt → Expand ideas → Save to Sheet">
+          <div class="flow-canvas">
+            <svg class="flow-svg" viewBox="0 0 360 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="gB" x1="0" x2="1">
+                  <stop offset="0" stop-color="#06b6d4" />
+                  <stop offset="1" stop-color="#7c3aed" />
+                </linearGradient>
+              </defs>
+              <path class="flow-line" d="M60 60 C110 100, 180 100, 240 60" stroke="url(#gB)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+    
+            <div class="flow-block" style="left:6%;top:50%;">Prompt</div>
+            <div class="flow-block" style="left:42%;top:12%;">Generator</div>
+            <div class="flow-block" style="left:70%;top:50%;">Sheet</div>
+          </div>
+    
+          <div class="flow-meta">
+            <div class="flow-title">Idea Generator</div>
+            <div class="flow-desc">Prompt → Generate → Save</div>
+            <div class="flow-actions">
+              <button class="btn demo-btn">Open demo</button>
+            </div>
+          </div>
+        </article>
+    
+        <!-- Flow C -->
+        <article class="flow-card" data-title="Support Triage" data-desc="Email → Classify → Route">
+          <div class="flow-canvas">
+            <svg class="flow-svg" viewBox="0 0 360 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="gC" x1="0" x2="1">
+                  <stop offset="0" stop-color="#f97316" />
+                  <stop offset="1" stop-color="#f43f5e" />
+                </linearGradient>
+              </defs>
+              <path class="flow-line" d="M60 60 C110 10, 180 110, 240 60" stroke="url(#gC)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+    
+            <div class="flow-block" style="left:6%;top:50%;">Inbox</div>
+            <div class="flow-block" style="left:42%;top:12%;">Classifier</div>
+            <div class="flow-block" style="left:70%;top:50%;">Router</div>
+          </div>
+    
+          <div class="flow-meta">
+            <div class="flow-title">Support Triage</div>
+            <div class="flow-desc">Email → Classify → Route</div>
+            <div class="flow-actions">
+              <button class="btn demo-btn">Open demo</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+    <footer>
+      <div class="footer-links">
+        <span>© 2025 NeuroBlocks — AI Builder Platform</span>
+        <span>Privacy • Terms • Contact</span>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    let mobileOpen = false;
+    let mobileNav = null;
+
+    menuBtn.addEventListener("click", () => {
+      menuBtn.classList.toggle("active");
+      nav.classList.toggle("open");
+    });
+
+    menuBtn.addEventListener('click', () => {
+      mobileOpen = !mobileOpen;
+
+      if (mobileOpen) {
+        mobileNav = document.createElement('div');
+        mobileNav.id = 'mobileNav';
+        mobileNav.style.position = 'fixed';
+        mobileNav.style.left = '0';
+        mobileNav.style.right = '0';
+        mobileNav.style.top = '90px';
+        mobileNav.style.background = 'rgba(7,7,18,0.96)';
+        mobileNav.style.borderTop = '1px solid rgba(255,255,255,0.04)';
+        mobileNav.style.padding = '18px';
+        mobileNav.style.zIndex = '999';
+
+        mobileNav.innerHTML = `
+          <a href="#home" style="display:block;padding:12px 0">Home</a>
+          <a href="#how" style="display:block;padding:12px 0">How it works</a>
+          <a href="#examples" style="display:block;padding:12px 0">Examples</a>
+          <a href="builder.html" style="display:block;padding:12px 0;margin-top:10px;
+            background:linear-gradient(90deg,#1e1bff,#8a00ff);
+            border-radius:10px;text-align:center;color:white;">
+            Try Builder
+          </a>
+        `;
+
+        document.body.appendChild(mobileNav);
+      } else {
+        if (mobileNav) {
+          mobileNav.classList.add("hide"); // trigger animation
+
+          setTimeout(() => {
+            mobileNav.remove();
+            mobileNav = null;
+          }, 320); // match slideUp animation time
+        }
+      }
+    });
+
+    document.querySelectorAll('.flow-card').forEach(card => {
+      // set data-desc into meta attr for tooltip
+      const desc = card.getAttribute('data-desc') || '';
+      const meta = card.querySelector('.flow-meta');
+      if (meta) meta.setAttribute('data-desc', desc);
+
+      // demo button behaviour: for now open modal stub / alert
+      const btn = card.querySelector('.demo-btn');
+      if (btn) {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          // placeholder: open a real demo later — for now show a small modal/alert
+          const title = card.getAttribute('data-title') || 'Demo';
+          alert(title + ' — demo not implemented yet.');
+          // TODO: open real demo page / builder preloaded with template
+        });
+      }
+
+      // make entire card keyboard focusable and trigger hover state on focus
+      card.tabIndex = 0;
+      card.addEventListener('focus', () => card.classList.add('focused'));
+      card.addEventListener('blur', () => card.classList.remove('focused'));
+      card.addEventListener('keydown', (ev) => {
+        if (ev.key === 'Enter') {
+          const b = card.querySelector('.demo-btn');
+          if (b) b.click();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
