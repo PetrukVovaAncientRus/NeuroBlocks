@@ -79,7 +79,7 @@
       position:absolute;
       background: #b6b9bd;
       border-radius:1.5px;
-      transition: transform .32s cubic-bezier(.2,.9,.3,1), background .25s ease, box-shadow .28s ease, opacity .25s;
+      transition: transform 0.3s;
       box-shadow: none;
     }
     .square.s1 { width:27px; height:27px; left:-4px; top:35px; transform: rotate(10deg); }
@@ -202,8 +202,8 @@
     .pulse .item { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0; }
 
     @keyframes subtlePulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.02); }
+      0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(130, 60, 255, 0.4); } 
+      50% { transform: scale(1.02); box-shadow: 0 0 25px rgba(130, 60, 255, 0.8); }
     }
 
     .icon { width: 1.5rem; height: 1.5rem; border-radius: 4px; display: flex; align-items: center; justify-content: center; }
